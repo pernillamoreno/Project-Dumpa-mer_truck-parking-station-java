@@ -1,7 +1,4 @@
-import java.util.Scanner; //Det blev inte mycket. Har verklgen lagt ned mycket tid. Men dom projekten som jag hade föreställt mig att
-                          //jag skulle lämnat in som uppgift blev helt enkelt inte bra. Men jag har lärt mig en hel del under tiden.
-                          //På något kostigt sätt är det väldigt roligt trots att jag blir galen av alla fel jag gör.
-                          //Antar att det är någon slags självplågeri :)
+import java.util.Scanner; //Mina ambitioner för denns uppgift visar inte detta resultat. Men nu kan det bara bli bättre. 
 
 import static java.lang.System.out;
 
@@ -20,7 +17,7 @@ public class DumpaMer {
 
 
     public void choise() {
-        while (makeChoises != 3) {
+        while (makeChoises != 3) {//whileloop som kör så länge det inte är 3. Vid val av 3 avslutas programmet.
             out.println("Välkommen till Dumpa mer!\n" + //meny som visas när använvaden anländer till stationen
                     "~~~~~~~~~~~~~~~~~~~~~~~~~    \n" +
                     "Välj i menyn:                \n" +
@@ -29,11 +26,11 @@ public class DumpaMer {
                     "3.  Exit  ");
             makeChoises = scanner.nextInt();
 
-            switch (makeChoises) { //Switch till att välja i huvudmenyn. If else till valen av vikt, registrering osv
+            switch (makeChoises) { //Switch till att välja i huvudmenyn. 
 
                 case 1 -> parkeringsLista(); //listan som lagrar fordonen
                 case 2 -> {
-                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");
+                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");//Ifsats för att välja fordon.Meny för fordon.
                     Scanner options = new Scanner(System.in);
                     fordonsModell = options.nextLine();
                     if (fordonsModell.equals("1")) { //fordonsmodellerna tilldelas med equals
@@ -49,16 +46,19 @@ public class DumpaMer {
                     fordonsVikt = 0;
                     fordonsVikt = options.nextInt();
                     out.println("Den angivna vikten är" + fordonsVikt);
-                    String[] lastBryggaPlats = {"lastBrygga A",//dom olika kajplatserna där fordonen lastar av.
+                    String[] lastBryggaPlats = {"lastBrygga A",//Lista kajplatserna där fordonen lastar av.
                                                 "lastBrygga B",
                                                 "lastBrygga C",
                                                 "lastBrygga D",
                                                 "lastBrygga E"};
+                  //if : avlast på samma lastbrygga om det Van ELLER Lättlastbil som är sant || . Då lastar fordonet av på samma kaj eftersom vikten tillåter
+                  //detta tex A är det under 5 ton. 
+                  //När Van OCH lastbrygga A är sant && (när kajen är ledig)Vanen kan lasta av. 
                     if ((fordonsModell.equals("Van") && avLastBryggaA <= 4) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
                         lastBrygga = lastBryggaPlats[0]; //utgångsvärde av lastbryggorna 0
                         avLastBryggaA++;
                         out.println("Du kan parkera på " + lastBrygga);
-
+                    //else if om villkoret är sant av någon av valen nedan  
                     } else if (fordonsModell.equals("Van") && avLastBryggaA > 4 && avLastBryggaB <= 4) {
                         lastBrygga = lastBryggaPlats[1];
                         avLastBryggaB++;
@@ -83,7 +83,7 @@ public class DumpaMer {
                         lastBrygga = lastBryggaPlats[4];
                         avlastBryggaE++;
                         out.println("Du parkerar på " + lastBrygga);
-
+                      //else om villkoret är falskt och fullt.
                     } else {
                         out.println("Det är fullt,tack och hej leverpastej");
                     }
