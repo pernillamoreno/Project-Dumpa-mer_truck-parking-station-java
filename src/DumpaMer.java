@@ -1,4 +1,4 @@
-import java.util.Scanner; //Mina ambitioner för denns uppgift visar inte detta resultat. Men nu kan det bara bli bättre. 
+import java.util.Scanner; //Mina ambitioner för denna uppgift visar inte detta resultat. Men nu kan det bara bli bättre. 
 
 import static java.lang.System.out;
 
@@ -9,7 +9,7 @@ public class DumpaMer {
     int fordonsVikt;
     String lastBrygga;
     int makeChoises;
-    int avLastBryggaA = 0;//tilldeling int, dom olika avlastningsplatserna
+    int avLastBryggaA = 0;//tilldeling datatypen int, på dom olika avlastningsplatserna
     int avLastBryggaB = 0;
     int avLastBryggaC = 0;
     int avLastBryggaD = 0;
@@ -53,10 +53,11 @@ public class DumpaMer {
                                                 "lastBrygga E"};
                   //if : avlast på samma lastbrygga om det Van ELLER Lättlastbil som är sant || . Då lastar fordonet av på samma kaj eftersom vikten tillåter
                   //detta tex A är det under 5 ton. 
-                  //När Van OCH lastbrygga A är sant && (när kajen är ledig)Vanen kan lasta av. 
+                  //När Van OCH lastbrygga A är sant && (när kajen är ledig)lastar vanen av. Är villkoret falskt, dvs lastkaj full blir Vanen dirgerad till B [1]
+                   //om villkoret är är sant dvs ledig. 
                     if ((fordonsModell.equals("Van") && avLastBryggaA <= 4) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
                         lastBrygga = lastBryggaPlats[0]; //utgångsvärde av lastbryggorna 0
-                        avLastBryggaA++;
+                        avLastBryggaA++; //++ visar att variabeln ökar ett fordon på denna lastbrygga.
                         out.println("Du kan parkera på " + lastBrygga);
                     //else if om villkoret är sant av någon av valen nedan  
                     } else if (fordonsModell.equals("Van") && avLastBryggaA > 4 && avLastBryggaB <= 4) {
@@ -83,7 +84,7 @@ public class DumpaMer {
                         lastBrygga = lastBryggaPlats[4];
                         avlastBryggaE++;
                         out.println("Du parkerar på " + lastBrygga);
-                      //else om villkoret är falskt och fullt.
+                      //else om villkoret är falskt och det är fullt på Dumpa mer.
                     } else {
                         out.println("Det är fullt,tack och hej leverpastej");
                     }
