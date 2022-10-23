@@ -2,8 +2,8 @@ import java.util.Scanner; //Mina ambitioner för denna uppgift visar inte detta 
 
 import static java.lang.System.out;
 
-public class DumpaMer {
-    Scanner scanner = new Scanner(System.in);
+public class DumpaMer { //metoden DumpaMer
+    Scanner scanner = new Scanner(System.in); //Scanner tar in värdet från en användare
 
     String fordonsModell;
     int fordonsVikt;
@@ -16,7 +16,7 @@ public class DumpaMer {
     int avlastBryggaE = 0;
 
 
-    public void choise() {
+    public void choise() { //metod choise
         while (makeChoises != 3) {//whileloop som kör så länge det inte är 3. Vid val av 3 avslutas programmet.
             out.println("Välkommen till Dumpa mer!\n" + //meny som visas när använvaden anländer till stationen
                     "~~~~~~~~~~~~~~~~~~~~~~~~~    \n" +
@@ -30,10 +30,10 @@ public class DumpaMer {
 
                 case 1 -> parkeringsLista(); //listan som lagrar fordonen
                 case 2 -> {
-                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");//Ifsats för att välja fordon.Meny för fordon.
+                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");//Meny för fordon.
                     Scanner options = new Scanner(System.in);
                     fordonsModell = options.nextLine();
-                    if (fordonsModell.equals("1")) { //fordonsmodellerna tilldelas med equals
+                    if (fordonsModell.equals("1")) { //Ifsats för att välja fordon.fordonsmodellerna tilldelas med equals tex värdet 1 är Van. 
                         fordonsModell = "Van";
                     }
                     if (fordonsModell.equals("2")) {
@@ -44,7 +44,7 @@ public class DumpaMer {
                     }
                     out.println("Ange vikt");
                     fordonsVikt = 0;
-                    fordonsVikt = options.nextInt();
+                    fordonsVikt = options.nextInt(); //Värdet av vikten sparas i variabeln som heter fordonsvikt. 
                     out.println("Den angivna vikten är" + fordonsVikt);
                     String[] lastBryggaPlats = {"lastBrygga A",//Lista kajplatserna där fordonen lastar av.
                                                 "lastBrygga B",
