@@ -3,7 +3,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        DumpaMer start=new DumpaMer();
-        start.choise();
+        DumpaMer mer=new DumpaMer();
+        mer.choise();
     }
 }
