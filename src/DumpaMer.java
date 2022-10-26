@@ -2,7 +2,7 @@ import java.util.Scanner; //Mina ambitioner för denna uppgift visar inte detta 
 
 import static java.lang.System.out;
 
-public class DumpaMer { //metoden DumpaMer
+public class DumpaMer { //klassen DumpaMer
     Scanner scanner = new Scanner(System.in); //Scanner tar in värdet från en användare
 
     String fordonsModell;
