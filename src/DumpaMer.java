@@ -1,39 +1,45 @@
-import java.util.Scanner; //Mina ambitioner för denna uppgift visar inte detta resultat. Men nu kan det bara bli bättre. 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class DumpaMer { //klassen DumpaMer
-    Scanner scanner = new Scanner(System.in); //Scanner tar in värdet från en användare
+public class DumpaMer {
+    Scanner scanner = new Scanner(System.in);
 
     String fordonsModell;
     int fordonsVikt;
     String lastBrygga;
     int makeChoises;
-    int avLastBryggaA = 0;//tilldeling datatypen int, på dom olika avlastningsplatserna
+    int avLastBryggaA = 0;
     int avLastBryggaB = 0;
     int avLastBryggaC = 0;
     int avLastBryggaD = 0;
     int avlastBryggaE = 0;
+    List<parkeradFordon> parkeradFordonInfoList = new ArrayList<>();
 
 
-    public void choise() { //metod choise
-        while (makeChoises != 3) {//whileloop som kör så länge det inte är 3. Vid val av 3 avslutas programmet.
-            out.println("Välkommen till Dumpa mer!\n" + //meny som visas när använvaden anländer till stationen
+    public void choise() {
+        while (makeChoises != 3) {
+            out.println("Välkommen till Dumpa mer!\n" +
                     "~~~~~~~~~~~~~~~~~~~~~~~~~    \n" +
                     "Välj i menyn:                \n" +
                     "1. Se parkerade fordon       \n" +
                     "2. Registra nytt fordon.     \n" +
-                    "3.  Exit  ");
+                    "3. Exit  ");
             makeChoises = scanner.nextInt();
 
-            switch (makeChoises) { //Switch till att välja i huvudmenyn. 
+            switch (makeChoises) {
 
-                case 1 -> parkeringsLista(); //listan som lagrar fordonen
+                case 1 -> {
+                    if (parkeradFordonInfoList.size() == 0) {}
+                    parkeringsLista();
+                }
                 case 2 -> {
-                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");//Meny för fordon.
+                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");
                     Scanner options = new Scanner(System.in);
                     fordonsModell = options.nextLine();
-                    if (fordonsModell.equals("1")) { //Ifsats för att välja fordon.fordonsmodellerna tilldelas med equals tex värdet 1 är Van. 
+                    if (fordonsModell.equals("1")) {
                         fordonsModell = "Van";
                     }
                     if (fordonsModell.equals("2")) {
@@ -44,33 +50,32 @@ public class DumpaMer { //klassen DumpaMer
                     }
                     out.println("Ange vikt");
                     fordonsVikt = 0;
-                    fordonsVikt = options.nextInt(); //Värdet av vikten sparas i variabeln som heter fordonsvikt. 
+                    fordonsVikt = options.nextInt();
                     out.println("Den angivna vikten är" + fordonsVikt);
-                    String[] lastBryggaPlats = {"lastBrygga A",//Lista kajplatserna där fordonen lastar av.
-                                                "lastBrygga B",
-                                                "lastBrygga C",
-                                                "lastBrygga D",
-                                                "lastBrygga E"};
-                  //if : avlast på samma lastbrygga om det Van ELLER Lättlastbil som är sant || . Då lastar fordonet av på samma kaj eftersom vikten tillåter
-                  //detta tex A är det under 5 ton. 
-                  //När Van OCH lastbrygga A är sant && (när kajen är ledig)lastar vanen av. Är villkoret falskt, dvs lastkaj full blir Vanen dirgerad till B [1]
-                   //om villkoret är är sant dvs ledig. 
+                    String[] lastBryggaPlats = {"lastBrygga A",
+                            "lastBrygga B",
+                            "lastBrygga C",
+                            "lastBrygga D",
+                            "lastBrygga E"};
+
                     if ((fordonsModell.equals("Van") && avLastBryggaA <= 4) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
-                        lastBrygga = lastBryggaPlats[0]; //utgångsvärde av lastbryggorna 0
-                        avLastBryggaA++; //++ visar att variabeln ökar ett fordon på denna lastbrygga.
+                        lastBrygga = lastBryggaPlats[0];
+                        avLastBryggaA++;
                         out.println("Du kan parkera på " + lastBrygga);
-                    //else if om villkoret är sant av någon av valen nedan  
-                    } else if (fordonsModell.equals("Van") && avLastBryggaA > 4 && avLastBryggaB <= 4) {
+
+
+                    } else if (fordonsModell.equals("Van") && avLastBryggaB <= 4) {
                         lastBrygga = lastBryggaPlats[1];
                         avLastBryggaB++;
                         out.println("Du parkerar på " + lastBrygga);
+
 
                     } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaC <= 4) {
                         lastBrygga = lastBryggaPlats[2];
                         avLastBryggaC++;
                         out.println("Du parkerar på " + lastBrygga);
 
-                    } else if (fordonsModell.equals("Lätt lastbil")&& avLastBryggaC > 4 && avLastBryggaD <= 4) {
+                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaD <= 4) {
                         lastBrygga = lastBryggaPlats[3];
                         avLastBryggaD++;
                         out.println("Du kan parkerar på " + lastBrygga);
@@ -84,14 +89,20 @@ public class DumpaMer { //klassen DumpaMer
                         lastBrygga = lastBryggaPlats[4];
                         avlastBryggaE++;
                         out.println("Du parkerar på " + lastBrygga);
-                      //else om villkoret är falskt och det är fullt på Dumpa mer.
+
                     } else {
                         out.println("Det är fullt,tack och hej leverpastej");
                     }
-                    parkeradFordon parkeradeFordonInfo = new parkeradFordon(fordonsModell, lastBrygga, fordonsVikt);
+                    parkeradFordon parkedTruckInfo = new parkeradFordon(fordonsModell, lastBrygga, fordonsVikt);
+                    parkeradFordonInfoList.add(parkedTruckInfo);
+
+
                 }
 
-                case 3 -> System.out.println("Du lämnar nu Dumpa mer. ");//Programmet avslutas
+                case 3 -> {
+                    System.out.println("Du lämnar nu Dumpa mer. ");//Programmet avslutas
+
+                }
             }
 
         }
@@ -99,9 +110,13 @@ public class DumpaMer { //klassen DumpaMer
     }
 
     public void parkeringsLista() {
+        for (parkeradFordon parkeradFordonInfo : parkeradFordonInfoList) {
+            System.out.println(parkeradFordonInfo);
 
 
+        }
     }
+
 }
 
 
