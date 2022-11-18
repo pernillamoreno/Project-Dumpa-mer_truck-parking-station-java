@@ -58,34 +58,34 @@ public class DumpaMer {
                             "lastBrygga D",
                             "lastBrygga E"};
 
-                    if ((fordonsModell.equals("Van") && avLastBryggaA <= 4) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
+                    if ((fordonsModell.equals("Van") && avLastBryggaA <1) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
                         lastBrygga = lastBryggaPlats[0];
                         avLastBryggaA++;
                         out.println("Du kan parkera på " + lastBrygga);
 
 
-                    } else if (fordonsModell.equals("Van") && avLastBryggaB <= 4) {
+                    } else if (fordonsModell.equals("Van") && avLastBryggaB <1) {
                         lastBrygga = lastBryggaPlats[1];
                         avLastBryggaB++;
                         out.println("Du parkerar på " + lastBrygga);
 
 
-                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaC <= 4) {
+                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaC <1) {
                         lastBrygga = lastBryggaPlats[2];
                         avLastBryggaC++;
                         out.println("Du parkerar på " + lastBrygga);
 
-                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaD <= 4) {
+                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaD <1) {
                         lastBrygga = lastBryggaPlats[3];
                         avLastBryggaD++;
                         out.println("Du kan parkerar på " + lastBrygga);
 
-                    } else if ((fordonsModell.equals("Lätt last bil") && avLastBryggaD <= 4) || (fordonsModell.equals("Tung last") && fordonsVikt < 9000)) {
+                    } else if ((fordonsModell.equals("Lätt last bil") && avLastBryggaD <1) || (fordonsModell.equals("Tung last") && fordonsVikt < 9000)) {
                         lastBrygga = lastBryggaPlats[3];
                         avLastBryggaD++;
                         out.println("Du kan parkerar på " + lastBrygga);
 
-                    } else if (fordonsModell.equals("Tung Lasbil") && avlastBryggaE >= 4) {
+                    } else if (fordonsModell.equals("Tung Lasbil") && avlastBryggaE <1) {
                         lastBrygga = lastBryggaPlats[4];
                         avlastBryggaE++;
                         out.println("Du parkerar på " + lastBrygga);
@@ -118,5 +118,4 @@ public class DumpaMer {
     }
 
 }
-
 
