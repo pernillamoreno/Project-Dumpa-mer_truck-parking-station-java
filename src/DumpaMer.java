@@ -2,26 +2,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.System.out;
+
 
 public class DumpaMer {
+    List<parkeradFordon> parkeradFordonInfoList = new ArrayList<>();
+
     Scanner scanner = new Scanner(System.in);
 
-    String fordonsModell;
-    int fordonsVikt;
-    String lastBrygga;
     int makeChoises;
-    int avLastBryggaA = 0;
-    int avLastBryggaB = 0;
-    int avLastBryggaC = 0;
-    int avLastBryggaD = 0;
-    int avlastBryggaE = 0;
-    List<parkeradFordon> parkeradFordonInfoList = new ArrayList<>();
+
+    int avLastBryggaA=0;
+    int avLastBryggaB=0;
+    int avLastBryggaC=0;
+    int avLastBryggaD=0;
+    int avlastBryggaE=0;
+
+    private String fordonsModell;
+    private String lastBrygga;
 
 
     public void choise() {
         while (makeChoises != 3) {
-            out.println("Välkommen till Dumpa mer!\n" +
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~ \n"+
+                    "Välkommen till Dumpa mer!\n" +
                     "~~~~~~~~~~~~~~~~~~~~~~~~~    \n" +
                     "Välj i menyn:                \n" +
                     "1. Se parkerade fordon       \n" +
@@ -30,90 +33,79 @@ public class DumpaMer {
             makeChoises = scanner.nextInt();
 
             switch (makeChoises) {
-
                 case 1 -> {
-                    if (parkeradFordonInfoList.size() == 0) {}
                     parkeringsLista();
                 }
                 case 2 -> {
-                    out.println("Dina Val: \n" + "1. Van  \n" + "2. Lätt lastbil \n" + "3. Tung lastbil \n");
+                    System.out.println("""
+                            Dina Val:\s
+                            1. Van \s
+                            2. Lätt Lastbil\s
+                            3. Tung Lastbil\s
+                            """);
                     Scanner options = new Scanner(System.in);
                     fordonsModell = options.nextLine();
                     if (fordonsModell.equals("1")) {
                         fordonsModell = "Van";
                     }
                     if (fordonsModell.equals("2")) {
-                        fordonsModell = "Lätt lastbil";
+                        fordonsModell = "Lätt Lastbil";
                     }
                     if (fordonsModell.equals("3")) {
                         fordonsModell = "Tung Lastbil";
                     }
-                    out.println("Ange vikt");
-                    fordonsVikt = 0;
-                    fordonsVikt = options.nextInt();
-                    out.println("Den angivna vikten är" + fordonsVikt);
-                    String[] lastBryggaPlats = {"lastBrygga A",
-                            "lastBrygga B",
-                            "lastBrygga C",
-                            "lastBrygga D",
-                            "lastBrygga E"};
+                    System.out.println("Ange vikt på fordonsModell");
+                    //int fordonsVikt;
+                    int fordonsVikt = options.nextInt();
 
-                    if ((fordonsModell.equals("Van") && avLastBryggaA <1) || (fordonsModell.equals("Lätt lastbil") && fordonsVikt < 5000)) {
+
+
+                    String[] lastBryggaPlats =
+                            {"lastBrygga A",
+                                    "lastBrygga B",
+                                    "lastBrygga C",
+                                    "lastBrygga D",
+                                    "lastBrygga E"};
+
+
+                    if ((fordonsModell.equals("Van") && avLastBryggaA <1) || ((fordonsModell.equals("Lätt Lastbil") && avLastBryggaA <1) && fordonsVikt < 5000)) {
                         lastBrygga = lastBryggaPlats[0];
                         avLastBryggaA++;
-                        out.println("Du kan parkera på " + lastBrygga);
-
+                        System.out.println("Du kan parkera på " + lastBrygga);
 
                     } else if (fordonsModell.equals("Van") && avLastBryggaB <1) {
                         lastBrygga = lastBryggaPlats[1];
                         avLastBryggaB++;
-                        out.println("Du parkerar på " + lastBrygga);
+                        System.out.println("Du parkerar på " + lastBrygga);
 
-
-                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaC <1) {
+                    } else if (fordonsModell.equals("Lätt Lastbil") && avLastBryggaC <1) {
                         lastBrygga = lastBryggaPlats[2];
                         avLastBryggaC++;
-                        out.println("Du parkerar på " + lastBrygga);
+                       System.out.println("Du parkerar på " + lastBrygga);
 
-                    } else if (fordonsModell.equals("Lätt lastbil") && avLastBryggaD <1) {
+                    } else if ((fordonsModell.equals("Lätt Lastbil") && avLastBryggaD <1) || ((fordonsModell.equals("Tung Lastbil") && avLastBryggaD <1) && fordonsVikt < 9000)) {
                         lastBrygga = lastBryggaPlats[3];
                         avLastBryggaD++;
-                        out.println("Du kan parkerar på " + lastBrygga);
+                        System.out.println("Du kan parkerar på  " + lastBrygga);
 
-                    } else if ((fordonsModell.equals("Lätt last bil") && avLastBryggaD <1) || (fordonsModell.equals("Tung last") && fordonsVikt < 9000)) {
-                        lastBrygga = lastBryggaPlats[3];
-                        avLastBryggaD++;
-                        out.println("Du kan parkerar på " + lastBrygga);
-
-                    } else if (fordonsModell.equals("Tung Lasbil") && avlastBryggaE <1) {
+                    } else if (fordonsModell.equals("Tung Lastbil") && avlastBryggaE <1) {
                         lastBrygga = lastBryggaPlats[4];
                         avlastBryggaE++;
-                        out.println("Du parkerar på " + lastBrygga);
-
+                        System.out.println("Du parkerar på  " + lastBrygga);
                     } else {
-                        out.println("Det är fullt,tack och hej leverpastej");
+                        System.out.println("Det är fullt på Dumpa mer. Välkommen åter!");
+                      break;
                     }
                     parkeradFordon parkedTruckInfo = new parkeradFordon(fordonsModell, lastBrygga, fordonsVikt);
                     parkeradFordonInfoList.add(parkedTruckInfo);
-
-
                 }
-
-                case 3 -> {
-                    System.out.println("Du lämnar nu Dumpa mer. ");//Programmet avslutas
-
-                }
+                case 3 -> System.out.println("Du lämnar nu Dumpa mer. ");//Programmet avslutas
             }
-
         }
-
     }
-
     public void parkeringsLista() {
         for (parkeradFordon parkeradFordonInfo : parkeradFordonInfoList) {
             System.out.println(parkeradFordonInfo);
-
-
         }
     }
 
