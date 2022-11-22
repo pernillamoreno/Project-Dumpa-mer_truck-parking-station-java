@@ -17,8 +17,8 @@ public class DumpaMer {
     int avLastBryggaD=0;
     int avlastBryggaE=0;
 
-    private String fordonsModell;
-    private String lastBrygga;
+    String fordonsModell;
+    String lastBrygga;
 
 
     public void choise() {
